@@ -1,0 +1,218 @@
+.left {
+	-fx-background-image: url("bg.jpg");
+	-fx-background-insets: 5 5 5 5;
+	-fx-background-repeat: repeat-x;
+	/* -fx-background-position : 0px 0px 800px 800px ; */
+	-fx-background-size: 300px 800px;
+	-fx-border-width: 1px;
+	-fx-padding: 15;
+	-fx-spacing: 10;
+}
+
+.left .titled-pane  {
+	 -fx-border-width: 0px;
+ 	 -fx-font:normal bold 12 "SimSun" ;
+}
+
+.left .titled-pane>.title  {
+ 	 -fx-font:normal bold 12 "SimSun" ;
+ 	 -fx-padding: 5 20 5 10;
+}
+.left .titled-pane>.title .text {
+}
+.left .list-cell {
+	-fx-cursor:hand ;
+	-fx-border-width: 0px;
+	-fx-cell-size:25px ;
+	-fx-label-padding: 0 0 0 15 ;
+	-fx-font: normal bold  12 "SimSun";
+	
+}
+.left .list-view {
+	-fx-border-width: 0px;
+	-fx-selection-bar-text: white;
+	-fx-border-color : green ;
+	-fx-orientation: vertical ;
+	
+}
+
+.lefttoplabel {
+}
+
+.bottom {
+	-fx-background-image: url("banner.png");
+	-fx-background-insets: 5 5 5 5;
+	-fx-background-repeat: repeat-x;
+	-fx-min-height : 200px ;
+	-fx-pref-height : 200px ;
+	-fx-max-height:200px ;
+	-fx-alignment : center-right bottom-left ;
+	-fx-padding : 3 5 3 5 ;
+	-fx-font: normal bold  12 "SimSun";
+}
+
+.top {
+	-fx-background-image: url("search.png");
+	-fx-background-insets: 5 5 5 5;
+	-fx-background-repeat: repeat-x;
+	-fx-background-size: 300px 800px;
+	-fx-border-width: 1px;
+	-fx-pref-height : 400px ;
+	-fx-padding: 15;
+	-fx-spacing: 10;
+}
+
+.top .text {
+	-fx-font: normal bold  18 "SimSun";
+}
+
+.h1 {
+	-fx-font: normal bold  13 "SimSun";
+	/*
+	-fx-font-style: normal ;
+	-fx-font-size : 12 ; 
+	-fx-font-family: "SimSun" ;
+	-fx-font-weight: bold  ; */
+}
+
+.h2 {
+	-fx-border-width: 0px;
+	-fx-cell-size:50px ;
+}
+
+.root {
+	-fx-background-repeat: repeat;
+	-fx-background-size: 800, 800;
+	-fx-min-width : 400px ;
+	-fx-min-height: 300px ;
+	
+}
+
+.center {
+	-fx-background-color:green ;
+}
+
+.treeNode {
+	-fx-base: #8fbc8f;
+	-fx-background-color: #8fbc8f;
+}
+
+.treeCell {
+}
+
+.button {
+	-fx-base: rgb(106, 90, 205);
+	-fx-cursor:hand;
+}
+.choiceBox {
+	-fx-base: rgb(255 ,255 ,255);
+}
+
+.findType{
+	-fx-cursor:hand ;
+}
+.searchInput{
+	-fx-prompt-text-fill:
+        rgb(128,128,128);
+    -fx-background-color:
+    	rgb(235, 235, 255, 0.5),
+        rgb(100, 100, 200, 0.4),
+        rgb(255, 255, 255);
+}
+.searchInput:focused{
+    -fx-prompt-text-fill:
+        rgb(128,128,128);
+    -fx-background-color:
+    	rgb(150, 150, 220, 0.5),
+        rgb(0, 0, 0, 0.4),
+        rgb(255, 255, 255);
+}
+.normal_table_column{
+    -fx-base: rgb(255 ,255 ,255);
+	-fx-width:30 ;
+}
+.table_view:focused{
+	 -fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 0, 0.4),
+        rgb(255, 255, 255);
+}
+.input_label{
+	-fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 0, 0.4),
+        rgb(255, 255, 255);
+}
+
+/*-----------------页码--------------------------*/
+.page_prev {
+	-fx-base:#003fff ;
+    -fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 0, 0.1),
+        rgb(255, 255, 255);
+    -fx-cursor:hand ;
+}
+.page_prev:focused {
+	-fx-base:#00ffff ;
+	-fx-background-color:
+    	rgb(50, 100, 235, 0.3),
+        rgb(0, 0, 0, 0.4),
+        rgb(255, 255, 255);
+    -fx-border-width : 0 0 0 0 , 0 0 0 0 , 0 0 0 0  ;
+}
+.page_next {
+	-fx-base:#003fff ;
+	-fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 50, 0.1),
+        rgb(255, 255, 255);
+    -fx-cursor:hand ;
+}
+.page_next:focused {
+	-fx-base:#00ffff ;
+	-fx-background-color:
+    	rgb(50, 100, 235, 0.3),
+        rgb(0, 0, 0, 0.4),
+        rgb(255, 250, 250);
+}
+.page_curr:focused{
+	-fx-base:#003fff ;
+    -fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 0, 0.1),
+        rgb(255, 255, 255);
+}
+.page_size{
+	-fx-base:#00Ffff ;
+	-fx-background-color:
+    	rgb(235, 235, 235, 0.5),
+        rgb(0, 0, 50, 0.1),
+        rgb(255, 255, 255);
+    -fx-cursor:hand ;
+}
+
+.cellTextArea{
+	-fx-prompt-text-fill:
+        rgb(128,128,128);
+    -fx-background-color:
+    	transparent,
+        transparent,
+        transparent;
+}
+
+.cellTextArea:focused{
+	-fx-prompt-text-fill:
+        rgb(128,128,128);
+    -fx-background-color:
+    	transparent,
+        transparent,
+        transparent;
+}
+
+.cellHyperlink {
+	-fx-text-fill:mediumblue ;
+}
+.cellHyperlink:visited {
+	-fx-text-fill:magenta ;
+}

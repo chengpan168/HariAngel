@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	
+	<bean id="scene" class="com.eden.component.CgScene">
+		<constructor-arg index="0" ref="rootView"/>
+		<constructor-arg index="1" value="900"/>
+		<constructor-arg index="2" value="650"/>
+	</bean>
+	<bean id="rootView" class="com.eden.view.RootView">
+		<constructor-arg index="0" ref="topView"/>
+		<constructor-arg index="1" ref="leftView"/>
+		<constructor-arg index="2" ref="bottomView"/>
+		<constructor-arg index="3" ref="centerView"/>
+	</bean>
+	
+	<bean id="leftView" class="com.eden.view.LeftView">
+		<constructor-arg index="0" ref="moduleManager"/>
+	</bean>
+	<bean id="topView" class="com.eden.view.TopView"></bean>
+	<bean id="bottomView" class="com.eden.view.BottomView"></bean>
+	<bean id="centerView" class="com.eden.view.CenterView" />
+	
+</beans>

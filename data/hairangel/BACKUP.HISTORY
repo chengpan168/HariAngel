@@ -1,0 +1,5 @@
+Fri Sep 14 09:58:10 CST 2012:Backup started for database located at D:\Workspaces\Eclipse\HairAngel\data\hairangel to D:\dbbackups\hairangel.
+Fri Sep 14 09:58:13 CST 2012:Backup of data segment to D:\dbbackups\hairangel\seg0 completed. 
+Fri Sep 14 09:58:13 CST 2012:copied log directory from D:\Workspaces\Eclipse\HairAngel\data\hairangel\log to D:\dbbackups\hairangel\log
+Fri Sep 14 09:58:13 CST 2012:Backup completed, log instant at (1,135871) 
+

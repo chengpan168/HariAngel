@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Staff">
+	<select id="queryPage" resultType="staffDto" parameterType="page">
+		select
+		staff_id as staffId ,
+		staff_name as staffName ,
+		staff_code as staffCode ,
+		id_card_num as idCardNum ,
+		phone_num as phoneNum ,
+		address as address ,
+		sex as sex ,
+		birth_time as birthTime ,
+		status as status ,
+		account_num as accountNum ,
+		Entry_time as entryTime ,
+		create_time as createTime ,
+		remarks as remarks 
+		from t_staff 
+		<where>
+			<if test="findType == 'staffCode' ">
+				and staff_code = #{findValue}
+			</if>
+			<if test="findType == 'staffName' ">
+				and staff_name = #{findValue}
+			</if>
+			<if test="findType ==  'sex' ">
+				and sex = #{findValue}
+			</if>
+			<if test="findType == 'status'">
+				and status = #{findValue}
+			</if>
+			<if test="findType == 'phoneNum'">
+				and phone_num = #{findValue}
+			</if>
+		</where>
+		<choose>
+			<when test="sortValue != null">
+				order by ${sortType} ${sortValue} , staffId desc
+			</when>
+			<otherwise>
+				order by staffId desc
+			</otherwise>
+		</choose>
+	</select>
+    <select id="queryCount" resultType="int" parameterType="page">
+        select 
+			count(*)
+		from t_staff staff
+		<where>
+			<if test="findType == 'staffCode' ">
+				and staff.staff_code = #{findValue}
+			</if>
+			<if test="findType == 'staffName' ">
+				and staff.staff_name = #{findValue}
+			</if>
+			<if test="findType ==  'sex' ">
+				and staff.sex = #{findValue}
+			</if>
+			<if test="findType == 'status'">
+				and staff.status = #{findValue}
+			</if>
+		</where>
+    </select>
+
+	<select id="queryByExample" resultType="staffDto" parameterType="staffDto">
+		select
+		staff.staff_id as staffId ,
+		staff.staff_name as staffName ,
+		staff.staff_code as staffCode ,
+		staff.id_card_num as idCardNum ,
+		staff.phone_num as phoneNum ,
+		staff.sex ,
+		staff.birth_time as birthTime ,
+		staff.status ,
+		staff.account_num as accountNum ,
+		staff.Entry_time as entryTime ,
+		staff.create_time as createTime ,
+		staff.remarks
+		from t_staff staff
+		<where>
+			<if test="staffCode != null ">
+				and staff.staff_code = #{staffCode}
+			</if>
+			<if test="staffName != null ">
+				and staff.staff_name = #{staffName}
+			</if>
+			<if test=" staffId !=  null ">
+				and staff.staff_id = #{staffId}
+			</if>
+		</where>
+    </select>
+	<select id="queryPosition" resultType="staffPosition" parameterType="list">
+		select
+			s.staff_position_id as staffPositionId,
+			s.staff_id as staffId,
+			s.position_id as positionId ,
+			p.position_name as positionName 
+		from t_staff_position s
+			left join t_position p on p.position_id = s.position_id
+		where s.staff_id in
+		 <foreach collection="list" open="(" separator="," close=")" item="staffDto">
+			#{staffDto.staffId}
+		</foreach> 
+    </select>
+
+	<delete id="deleteByIds" parameterType="list">
+		delete from t_staff s where s.staff_id in
+		<foreach collection="list" open="(" separator="," close=")" item="id">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteStaffPosition" parameterType="list">
+		delete from t_staff_position s where s.staff_position_id in
+		<foreach collection="list" open="(" separator="," close=")" item="staffPosition">
+			#{staffPosition.staffPositionId}
+		</foreach>
+	</delete>
+
+	<insert id="insert" parameterType="staff">
+		<selectKey keyProperty="staffId" resultType="int" order="BEFORE">
+			VALUES (NEXT VALUE FOR SEQ_STAFF)
+		</selectKey>
+		insert into t_staff
+		( staff_id , staff_code , staff_name , id_card_num , phone_num , sex , address
+		, birth_time , status , account_num , entry_time , create_time , remarks )
+		values (
+		#{staffId} , #{staffCode} , #{staffName} , #{idCardNum} , #{phoneNum} 
+		,#{sex} , #{address} , #{birthTime} , #{status} , #{accountNum} , #{entryTime} , #{createTime} 
+		,#{remarks}  )
+	</insert>
+	
+	<insert id="staffPosition" parameterType="staffPosition">
+		<selectKey keyProperty="staffPositionId" resultType="int" order="BEFORE">
+			VALUES (NEXT VALUE FOR SEQ_STAFF)
+		</selectKey>
+		insert into t_staff_position
+		( staff_position_id , staff_id , position_id , create_time )
+		values (
+		#{staffPositionId} , #{staffId} , #{positionId} ,  #{createTime}  )
+	</insert>
+    
+    
+    
+    <update id="update" parameterType="staff">
+    	update t_staff set 
+    		staff_code = #{staffCode} ,
+    		staff_name =#{staffName} , 
+    		id_Card_Num =#{idCardNum} , 
+    		phone_Num =#{phoneNum} , 
+    		sex =#{sex} , 
+    		address =#{address} , 
+    		birth_time =#{birthTime} , 
+    		status =#{status} , 
+    		account_Num =#{accountNum} , 
+    		entry_Time =#{entryTime} , 
+    		remarks =#{remarks} 
+    	where 
+    		staff_id=#{staffId}
+    </update>
+    
+</mapper>

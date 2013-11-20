@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="moduleManager" class="com.eden.fxmvc.module.ModuleManager" >
+		<property name="modules">
+			<list>
+				<ref bean="check"/>
+				<ref bean="workRecord"/>
+				<ref bean="serviceManager"/>
+				<ref bean="clientManager"/>
+				<ref bean="memberCard"/>
+				<ref bean="member"/>
+				<ref bean="personManager"/>
+				<ref bean="staffManager"/>
+				<ref bean="positionManager"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="check" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="结算" />
+		<property name="isLeaf" value="true" />
+	</bean>
+	<bean id="workRecord" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="工作记录" />
+		<property name="isLeaf" value="true" />
+	</bean>
+	<bean id="serviceManager" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="服务管理" />
+		<property name="isLeaf" value="true" />
+	</bean>
+	
+	<bean id="clientManager" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="客户管理" />
+		<property name="isLeaf" value="false" />
+	</bean>
+	<bean id="memberCard" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="会员卡管理" />
+		<property name="isLeaf" value="true" />
+		<property name="parent" ref="clientManager" />
+		<property name="action" value="positionAction" />
+		<property name="view" ref="positionPane"></property>
+	</bean>
+	<bean id="member" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="会员管理" />
+		<property name="isLeaf" value="true" />
+		<property name="parent" ref="clientManager" />
+		<property name="view" ref="positionPane"></property>
+	</bean>
+	
+	<bean id="personManager" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="人员管理" />
+		<property name="isLeaf" value="false" />
+	</bean>
+	<bean id="staffManager" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="职员管理" />
+		<property name="isLeaf" value="true" />
+		<property name="parent" ref="personManager" />
+		<property name="action" value="staffListAction" />
+	</bean>
+	<bean id="positionManager" class="com.eden.fxmvc.module.Module">
+		<property name="title" value="职位管理" />
+		<property name="isLeaf" value="true" />
+		<property name="parent" ref="personManager" />
+		<property name="action" value="positionAction" />
+		<property name="view" ref="positionPane"></property>
+	</bean>
+	
+</beans>

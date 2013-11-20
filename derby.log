@@ -1,0 +1,23 @@
+----------------------------------------------------------------
+Tue Jul 23 17:43:07 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0140-0ae9-27fc-000000717c28 
+on database directory D:\Workspaces\eclipse4.3\HairAngel\data\hairangel  with class loader sun.misc.Launcher$AppClassLoader@15253d5 
+Loaded from file:/C:/Users/eden/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_10-b18
+user.dir=D:\Workspaces\eclipse4.3\HairAngel
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Jul 23 17:43:09 CST 2013:
+Shutting down instance a816c00e-0140-0ae9-27fc-000000717c28 on database directory D:\Workspaces\eclipse4.3\HairAngel\data\hairangel with class loader sun.misc.Launcher$AppClassLoader@15253d5 
+----------------------------------------------------------------
+Tue Jul 23 17:43:09 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance 601a400f-0140-0ae9-27fc-000000717c28 
+on database directory D:\Workspaces\eclipse4.3\HairAngel\data\hairangel  with class loader sun.misc.Launcher$AppClassLoader@15253d5 
+Loaded from file:/C:/Users/eden/.m2/repository/org/apache/derby/derby/10.9.1.0/derby-10.9.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_10-b18
+user.dir=D:\Workspaces\eclipse4.3\HairAngel
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

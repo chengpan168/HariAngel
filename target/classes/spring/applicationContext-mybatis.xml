@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:property-placeholder location="jdbc.properties" />
+	
+	<bean id="daoService" class="com.eden.fxmvc.dao.support.DefaultDaoServiceImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"></property>
+		<property name="batchSqlSession" ref="batchSqlSessionTemplate"></property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	<bean id="batchSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+		<constructor-arg><value type="org.apache.ibatis.session.ExecutorType">BATCH</value></constructor-arg>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mapper/sqlMapConfig.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<!-- 配置事务属性 -->
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="query*">PROPAGATION_REQUIRED,readOnly</prop>
+				<!-- <prop key="deleteDB*">PROPAGATION_REQUIRED</prop>
+				<prop key="addDB*">PROPAGATION_REQUIRED</prop>
+				<prop key="updateDB*">PROPAGATION_REQUIRED</prop>
+				<prop key="saveDB*">PROPAGATION_REQUIRED</prop>
+				<prop key="findDB*">PROPAGATION_REQUIRED,readOnly</prop> -->
+			</props>
+		</property>
+	</bean>
+	<!-- 自动代理 以Service结尾的bean会被事物拦截-->
+	<bean id="autoproxy"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 可以是Service或DAO层（最好是针对业务层*Service） -->
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>
